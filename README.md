@@ -40,6 +40,8 @@ https://github.com/tomasyoel/lab1u3tomas
 ```Powershell
 md infra
 ```
+![](img/1.png)
+
 2. Abrir Visual Studio Code, seguidamente abrir la carpeta del repositorio clonado del laboratorio, en el folder Infra, crear el archivo main.tf con el siguiente contenido
 ```Terraform
 terraform {
@@ -157,6 +159,7 @@ resource "azurerm_mssql_database" "sqldb" {
 > 
 > SQL_PASS: Password del usuario administrador de la base de datos, ejm: upt.2025
 
+![](img/2.png)
 5. En el Visual Studio Code, crear la carpeta .github/workflows en la raiz del proyecto, seguidamente crear el archivo deploy.yml con el siguiente contenido
 <details><summary>Click to expand: deploy.yml</summary>
 
@@ -322,10 +325,18 @@ jobs:
 ```
 </details>
 
+![](img/3.png)
+
+![](img/4.png)
+
 6. En el Visual Studio Code, guardar los cambios y subir los cambios al repositorio. Revisar los logs de la ejeuciòn de automatizaciòn y anotar el numero de identificaciòn de Grupo de Recursos y Aplicación Web creados
 ```Bash
 azurerm_linux_web_app.webapp: Creation complete after 53s [id=/subscriptions/1f57de72-50fd-4271-8ab9-3fc129f02bc0/resourceGroups/upt-arg-XXX/providers/Microsoft.Web/sites/upt-awa-XXX]
 ```
+
+![](img/5.png)
+
+![](img/6.png)
 
 ### CONSTRUCCION DE LA APLICACION - BACKEND
 
@@ -339,6 +350,8 @@ func new --name ShortenHttp --template "HTTP trigger" --authlevel "anonymous"
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version=8.0.0
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version=8.0.0
 ```
+
+
 
 2. En el VS Code, buscar el proyecto ShortenFunction modificar el archivo ShortenHttp.cs, con el siguiente contenido:
 ```CSharp
@@ -515,6 +528,8 @@ namespace ShortenFunction
 
 ```
 
+![](img/7.png)
+
 3. En el VS Code, buscar el proyecto ShortenFunction modificar el archivo local.settings.json, con el siguiente contenido:
 ```JSon
 {
@@ -532,11 +547,17 @@ namespace ShortenFunction
 >       YYY, usuario administrador de base de datos
 >       ZZZ, password del usuario de base de datos
 
+![](img/8.png)
+
+
 4. En el Terminal, ejecutar el siguiente comando para crear las tablas de base de datos de identidad.
 ```Bash
 dotnet ef migrations add CreateIdentitySchema
 dotnet ef database update
 ```
+
+![](img/9.png)
+
 
 5. En el Terminal, ejecutar el siguiente comando para ejecutar la aplicación.
 ```Bash
@@ -556,6 +577,14 @@ az functionapp deployment source config-zip -g upt-arg-373 -n upt-afn-373 --src 
 >       YYY, usuario administrador de base de datos
 >       ZZZ, password del usuario de base de datos
 
+![](img/10.png)
+
+![](img/11.png)
+
+![](img/12.png)
+
+![](img/13.png)
+
 7. En el Navegador, abrir una nueva pestaña e ingresar a la url https://upt-afn-XXX.azurewebsites.net/api/shorturl
 >Donde: XXX, id de su azure function
 
@@ -568,6 +597,9 @@ cd ShortenApp
 dotnet new razorcomponent -n UrlMapping -o Pages
 code .
 ```
+
+![](img/14.png)
+
 9. En Visual Studio Code, dentro del proyecto ClienteApp, editar el archivo UrlMapping.razor con el siguiente contenido:
 ```CSharp
 @page "/urlmapping"
@@ -636,6 +668,11 @@ else
     }
 }
 ```
+
+
+![](img/15.png)
+
+
 10. En Visual Studio Code, en el proyecto ClienteApp en la ruta Layout modificar el archivo NavMenu.razor
 > dice
 ```Razor
@@ -649,6 +686,10 @@ else
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Urls Acortadas
             </NavLink>
 ```
+
+![](img/16.png)
+
+
 11. En Visual Studio Code, modificar el archivo program.cs, reemplazar la linea
 > dice
 ```CSharp
@@ -659,6 +700,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://upt-afn-XXX.azurewebsites.net") });
 ```
 >Donde: XXX, id del azure function
+
+![](img/17.png)
 
 12. (Opcional) en el terminal, ubicarse en la carpeta ClienteAPI, ejecutar el comando `dotnet run` para iniciar la aplicación. Anotar el numero de puerto que aparecera: Now listening on: http://localhost:XXXX. Abrir un navegador de internet e ingresar la url: http://localhost:XXXX
 
@@ -673,13 +716,32 @@ swa deploy ./publish/wwwroot -n upt-swa-XXX --env production
 
 15. En el Terminal, se visualizara el link de la Webapp Estatica, hacer click en el para verificar los resultados.
 
-![image](https://github.com/user-attachments/assets/463ed443-3843-44a1-95bf-c7a9aa999666)
+![](img/18.png)
+
+![](img/19.png)
+
+![](img/20.png)
+
 
 
 ## ACTIVIDADES ENCARGADAS
 
 1. Generar y subir el diagrama de infraestructura al repositorio como lab_02.png y el reporte de metricas. (2ptos)
+
+![](img/25.png)
+
 2. Realizar el escaneo del codigo de terraform utilizando TfSec o Trivy dentro del Github Action. (2ptos)
+
+![](img/23.png)
+
 3. En la aplicación completar con las demas funcionalidades, de crear, actualizar y eliminar (4ptos)
+
+![](img/21.png)
+
 4. Realizar el escaneo de vulnerabilidad con SonarCloud y Semgrep dentro del Github Action correspondiente. (2ptos)
+
+![](img/22.png)
+
 5. Generar un Action para el despliegue de las dos aplicaciones, backend y frntend, incluyendo todo lo anterior. (4ptos)
+
+![](img/24.png)
