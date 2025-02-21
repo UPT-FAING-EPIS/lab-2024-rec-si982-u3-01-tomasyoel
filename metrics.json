@@ -1,0 +1,68 @@
+{
+  "cost": 9,
+  "interval": "PT1M",
+  "namespace": "Microsoft.Web/sites",
+  "resourceregion": "eastus2",
+  "timespan": "2025-02-21T00:28:24Z/2025-02-21T00:38:24Z",
+  "value": [
+    {
+      "displayDescription": "The total number of requests regardless of their resulting HTTP status code. For WebApps and FunctionApps.",
+      "errorCode": "Success",
+      "id": "/subscriptions/ff6d9c66-512b-457e-a72f-2bcdf38cce4c/resourceGroups/upt-arg-399/providers/Microsoft.Web/sites/upt-afn-399/providers/Microsoft.Insights/metrics/Requests",
+      "name": {
+        "localizedValue": "Requests",
+        "value": "Requests"
+      },
+      "resourceGroup": "upt-arg-399",
+      "timeseries": [
+        {
+          "data": [
+            {
+              "timeStamp": "2025-02-21T00:28:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:29:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:30:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:31:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:32:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:33:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:34:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:35:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:36:00Z",
+              "total": 0.0
+            },
+            {
+              "timeStamp": "2025-02-21T00:37:00Z",
+              "total": 0.0
+            }
+          ],
+          "metadatavalues": []
+        }
+      ],
+      "type": "Microsoft.Insights/metrics",
+      "unit": "Count"
+    }
+  ]
+}
